@@ -17,7 +17,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: 'http://127.0.0.1:3000', // should work
       cache: false,
       contentType: false,
       processData: false,
@@ -43,7 +43,54 @@
       return;
     }
 
-    ajaxFileUplaod(file);
+    ajaxFileUplaod(file);  // invokes POST request with
   });
 
+
+  /////////new GET request
+
+  const ajaxRandomGet = (callback) => {
+    console.log('ajaxRandomGet was called');
+    $.ajax({
+      type: 'GET',
+      //data: { },
+      url: 'http://127.0.0.1:3000',
+      //contentType: 'application/json',
+
+      success: (data) => {
+
+        console.log('this is the data from the server', data);
+        callback(data);
+
+      }
+      // error: (error) => {
+      //   console.error('Failed to get messages', error);
+      //   console.log(data);
+      // }
+    });
+  };
+
+  $('body').on('keydown', (event) => {
+    // debugger;
+    console.log('Logging the event ', event);
+
+    var sPress = event.key.match(/s/);
+    console.log(sPress);
+    if (sPress) {
+    // call get request with a callback to call swimTeam.move(randomMessage);
+    ajaxRandomGet(SwimTeam.move);
+    }
+  });
+
+
+
 })();
+
+
+// add GET request
+// what do we want to generate the GET request?
+
+// for now we can have it happen when we press the 'S' key
+//export default httpHandler;
+
+
