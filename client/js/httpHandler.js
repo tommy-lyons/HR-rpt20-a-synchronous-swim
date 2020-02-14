@@ -70,6 +70,15 @@
     });
   };
 
+  // add setInterval functionality that starts on the page load
+  $(document).ready(
+    setInterval(function(){
+    ajaxRandomGet(SwimTeam.move)
+    }, 1000)
+  )
+
+
+
   $('body').on('keydown', (event) => {
     // debugger;
     console.log('Logging the event ', event);
