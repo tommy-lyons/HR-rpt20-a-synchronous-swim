@@ -48,36 +48,60 @@
 
 
   /////////new GET request
-
   const ajaxRandomGet = (callback) => {
     console.log('ajaxRandomGet was called');
     $.ajax({
       type: 'GET',
-      //data: { },
+      data: 'random',
       url: 'http://127.0.0.1:3000',
-      //contentType: 'application/json',
-
       success: (data) => {
-
         console.log('this is the data from the server', data);
         callback(data);
-
       }
-      // error: (error) => {
-      //   console.error('Failed to get messages', error);
-      //   console.log(data);
-      // }
     });
   };
 
-  // add setInterval functionality that starts on the page load
-  $(document).ready(
-    setInterval(function(){
-    ajaxRandomGet(SwimTeam.move)
-    }, 1000)
-  )
+  const ajaxServerSwimGet = (callback) => {
+    console.log('ajaxRandomGet was called');
+    $.ajax({
+      type: 'GET',
+      data: 'S',
+      url: 'http://127.0.0.1:3000',
+      success: (data) => {
+        console.log('this is the data from the server', data);
+        callback(data);
+      }
+    });
+  };
+
+  // const ajaxGetImage = (callback) => {
+  //   console.log('ajaxGetImage was called');
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: 'http://127.0.0.1:3000',
+  //     data: 'image',
+  //     success: (data) => {
+  //       console.log('this is the data from the server', data);
+  //       callback(data);
+  //     }
+  //   });
+  // };
+  // var addImage = (data) => {
+  //   // debugger;
+  //     $('.pool').css('background-image', 'url(' + data + ')');
+  //   }
 
 
+  // add setInterval random swimming functionality that starts on the page load
+  // $(document).ready(
+    // call an ajax fuction
+    // ajaxGetImage(addImage)
+
+  //   $(document).ready(
+  //   setInterval(function(){
+  //   ajaxRandomGet(SwimTeam.move)
+  //   }, 1000)
+  //  );
 
   $('body').on('keydown', (event) => {
     // debugger;
@@ -87,19 +111,9 @@
     console.log(sPress);
     if (sPress) {
     // call get request with a callback to call swimTeam.move(randomMessage);
-    ajaxRandomGet(SwimTeam.move);
+    ajaxServerSwimGet(SwimTeam.move);
     }
   });
 
-
-
 })();
-
-
-// add GET request
-// what do we want to generate the GET request?
-
-// for now we can have it happen when we press the 'S' key
-//export default httpHandler;
-
 
